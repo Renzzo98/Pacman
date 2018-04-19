@@ -18,7 +18,8 @@ public class GameEngine {
     
     public GameEngine(API api){
         this.api = api;
-        myPacman = new Pacman 
+        myPacman = new Pacman();
+        //Why is Hugo doing all of the work
     }
     
     public void oneRound(){
