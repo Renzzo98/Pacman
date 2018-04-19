@@ -18,7 +18,7 @@ public class GameEngine {
     
     public GameEngine(API api){
         this.api = api;
-        myPacman = new Pacman 
+        myPacman = new Pacman(0,0); 
     }
     
     public void oneRound(){
