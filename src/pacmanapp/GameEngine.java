@@ -61,84 +61,13 @@ public class GameEngine {
     };
 
     public void handleKey(KEY key) {
-        switch (key) {
-            case UP:
-                this.playerPacman.setDirection(0, -1);
-                break;
-
-            case DOWN:
-                this.playerPacman.setDirection(0, 1);
-                break;
-
-            case LEFT:
-                this.playerPacman.setDirection(-1, 0);
-                break;
-
-            case RIGHT:
-                this.playerPacman.setDirection(1, 0);
-                break;
-        }
+       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     protected void collisionDetect() {
-        for (Sprite s1 : this.arrSprites) {
-            for (Sprite s2 : this.arrSprites) {
-                if (s1 != s2) {
-                   //if ((x.x <= (y.x + y.w))&& (x.x >= y.x) && (x.y <= (y.y + y.h)) && (x.y >= y.y)) {
-                   if (isCollapse(s1.getX(),s1.getY(),s1.getW(),s1.getH(),s2.getX(),s2.getY(),s2.getW(),s2.getH())){
-                        if (s1 instanceof Pacman && !(s2 instanceof Pacman)) {
-                            Pacman p = (Pacman) s1;
-                            PacDot d = (PacDot) s2;
-                            d.eaten = true;
-                        } else {
-                            Pacman p = (Pacman) s2;
-                            PacDot d = (PacDot) s1;
-                            d.eaten = true;
-                        }
-                         if (s1 instanceof Pacman && s2 instanceof Pacman) {
-                            Pacman p1 = (Pacman) s1;
-                            Pacman p2 = (Pacman) s2;
-                            p1.dead = true;
-                            p2.dead = true;
-                        }else if (s1 instanceof PacDot && s2 instanceof PacDot){
-                            PacDot d1 = (PacDot) s1;
-                            PacDot d2 = (PacDot) s2;
-                        }
-                    }
-                }
-            }
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.       
     }
     
-    protected boolean pointinRect(int x, int y, int x2, int y2, int w ,int h)
-    {
-        if (x2 <= x && x <= (x2+w))
-        {
-            if (y2 <= y && y <= (y2+h))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    protected boolean isCollapse(int x, int y, int w,int h,int x2,int y2,int w2,int h2)
-    {
-        boolean lefttop = false, leftbot = false, righttop = false, rightbot = false;
-        lefttop = pointinRect(x, y, x2, y2, w2, h2);
-        leftbot = pointinRect(x, y+h, x2, y2, w2, h2);
-        righttop = pointinRect(x+w, y, x2, y2, w2, h2);
-        rightbot = pointinRect(x+w, y+h, x2, y2, w2, h2);
-        if (lefttop || leftbot || righttop || rightbot)
-        {
-            return true;
-        }else{
-            return false;
-        }
-
-         
-    }
-
     protected void updateAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
