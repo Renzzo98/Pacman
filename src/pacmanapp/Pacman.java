@@ -19,41 +19,71 @@ public class Pacman implements Sprite {
     
     public Pacman(int x, int y, int sx, int sy, int w, int h)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.x = x;
+        this.y = y;
+        this.sx = sx;
+        this.sy = sy;
+        this.w = w;
+        this.h = h;
+    }
+    
+    public int getX()
+    {
+        return this.x;
+    }
+
+    public int getY()
+    {
+       return this.y;
+    }
+            
+    public int getW()
+    {
+        return this.w;
+    }
+   
+    public int getH()
+    {
+        return this.h;
+    }
+    
+    public int getSX()
+    {
+        return this.sx;
+    }
+       
+    public int getSY()
+    {
+        return this.sy;
+    }
+    
+    @Override
+    public void draw(API api)
+    {
+        if(dead!=true){
+        String pic = this.arrPics[this.picIdx];
+        api.drawImg(pic,x,y,w,h);
+        }
+    }
+    
+    private int counter = 0;
+    
+    
+    @Override
+    public void update() {
+        counter++;
+        this.x += this.sx;
+        this.y += this.sy;
+        if(counter%25 == 0)
+        {
+            this.picIdx = (picIdx+1)%this.arrPics.length;
+        }
+       
     }
     
     public void setDirection(int sx, int sy)
     {
-       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void draw(API api) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getW() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getH() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.sx = sx;
+        this.sy = sy;
     }
 }

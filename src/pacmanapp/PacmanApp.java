@@ -12,6 +12,7 @@ import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -38,30 +39,39 @@ public class PacmanApp extends Application implements API {
 
         @Override
         public void run() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            while (true) {
+                try {
+                    Thread.sleep(20);
+                    ge.oneRound();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(PacmanApp.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }
 
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
+        //1. set up canvas
+        primaryStage.setTitle("Pacman");
+        Group root = new Group();
+        Scene scene = new Scene(root);
+     
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
+        Canvas canvas = new Canvas(1000,1000);
+        this.gc = canvas.getGraphicsContext2D();
+
+        root.getChildren().add(canvas);
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        //2. Create GameEngine
+        this.ge = new GameEngine(this);
+        this.ge.loadMap();
+
+        //3. IMPORTANT!! Start a thread or use Timeline/Keyframe!!!
+        MyThread mt = new MyThread();
+        mt.start(); // is a function provided by the standard Java to run the thread's function
     }
 
    
@@ -77,12 +87,32 @@ public class PacmanApp extends Application implements API {
 
     @Override
     public void drawImg(String filename, int x, int y, int w, int h) {
-       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        FileInputStream fis = null;
+        try {
+            Image ig = map.get(filename);
+            if (ig == null) {
+                String path = "images/" + filename;
+                fis = new FileInputStream(path);
+                ig = new Image(fis);
+                map.put(filename, ig);
+            }
+            this.gc.drawImage(ig, x, y, w, h);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PacmanApp.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(PacmanApp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.gc.clearRect(0,0,1000,1000);
     }
 
 }
