@@ -18,23 +18,42 @@ public class GameEngine {
     protected ArrayList<Sprite> arrSprites = new ArrayList<Sprite>();
 
     public void loadMap() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Pacman man1 = new Pacman(100, 100, 1, 0, 100, 100);
+        //Pacman man2 = new Pacman(300, 300, 0, -1, 100, 100);
+        PacDot dot1 = new PacDot(300, 300,100,100);
+        //PacDot dot1 = new PacDot(200,200, 50, 50);
+        this.register(man1);
+        //this.register(man2);
+        this.register(dot1);
+        //this.register(dot1);
+        this.playerPacman = man1;
     }
 
     public void register(Sprite s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.arrSprites.add(s);
     }
 
     public void delete(Sprite s) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.arrSprites.remove(s);
     }
 
+    protected API api;
+
     public GameEngine(API api) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.api = api;
     }
 
     public void oneRound() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Timer timer = new Timer();
+        timer.start();
+        api.clear();
+        this.collisionDetect();
+        for (Sprite s : this.arrSprites) {
+            s.update();
+            s.draw(api);
+        }
+        double du = timer.stop();
+        System.out.println("one Round: " + du + " milliseconds");
     }
 
     public enum KEY {
@@ -42,13 +61,13 @@ public class GameEngine {
     };
 
     public void handleKey(KEY key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     protected void collisionDetect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.       
     }
-
+    
     protected void updateAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

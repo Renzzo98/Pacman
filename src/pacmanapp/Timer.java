@@ -14,11 +14,12 @@ public class Timer {
     
     public void start()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        startTime = System.currentTimeMillis();
     }
     
     public double stop()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        long endTime = System.currentTimeMillis();
+        return endTime-startTime;
     }
 }

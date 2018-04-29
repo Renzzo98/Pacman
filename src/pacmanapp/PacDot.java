@@ -18,39 +18,46 @@ public class PacDot implements Sprite{
     
     public PacDot(int x, int y, int w, int h)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
     }
     
     public int getX()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.x;
     }
 
     public int getY()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.y;
     }
             
     public int getW()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.w;
     }
    
     public int getH()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.h;
     }
  
 
     @Override
     public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    @Override
     public void draw(API api)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(eaten!=true){
+        String pic = "blackdot.png";
+        api.drawImg(pic,x,y,w,h);
+        }
     }
     
 }
