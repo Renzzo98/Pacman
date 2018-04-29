@@ -68,6 +68,18 @@ public class GameEngine {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.       
     }
     
+    protected boolean pointinRect(int x, int y, int x2, int y2, int w ,int h)
+    {
+        if (x2 <= x && x <= (x2+w))
+        {
+            if (y2 <= y && y <= (y2+h))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     protected void updateAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
