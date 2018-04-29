@@ -10,7 +10,10 @@ package pacmanapp;
  * @author csc190
  */
 public class PacDot implements Sprite{
+    // Was the PacDot eaten?
     protected boolean eaten = false; //changes to true when collision is detected with pacman and is removed
+    
+    //Initialize all variables for Pacdot
     protected int x;
     protected int y;
     protected int w;

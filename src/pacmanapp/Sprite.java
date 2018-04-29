@@ -11,17 +11,17 @@ package pacmanapp;
  */
 public interface Sprite {
     
-    public void draw(API api);
+    public void draw(API api); // Draw the sprite
     
-    public void update();
+    public void update(); // Update the sprite location
     
-    public int getX();
+    public int getX(); // get the sprite's X
 
-    public int getY();
+    public int getY(); // get the sprite's Y
             
-    public int getW();
+    public int getW(); // get the sprite's W
    
-    public int getH();
+    public int getH(); // get the sprite's H
  
   
     

@@ -12,12 +12,12 @@ package pacmanapp;
 public class Timer {
     long startTime;
     
-    public void start()
+    public void start() // Start the timer
     {
         startTime = System.currentTimeMillis();
     }
     
-    public double stop()
+    public double stop() // End the timer and get the final time
     {
         long endTime = System.currentTimeMillis();
         return endTime-startTime;

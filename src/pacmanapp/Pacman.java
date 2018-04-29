@@ -10,8 +10,11 @@ package pacmanapp;
  * @author csc190
  */
 public class Pacman implements Sprite {
+    //Initiize all location variable for Pacman
     protected int x, y, sx, sy, w, h;
+    // Is Pacman Dead?
     protected boolean dead = false;
+    // Animation Sprites (Cycle through them
     protected String[] arrPics = {
         "Pacman1.png", "Pacman2.png","Pacman3.png"
     };

@@ -11,7 +11,7 @@ package pacmanapp;
  */
 public interface API {
     
-    public void drawImg(String picName, int xCoord, int yCoord, int width, int height);
+    public void drawImg(String picName, int xCoord, int yCoord, int width, int height); // Draw the Sprite on Screen
     
-    public void clear();
+    public void clear(); // Clear the Sprite from the screen
 }
