@@ -61,7 +61,23 @@ public class GameEngine {
     };
 
     public void handleKey(KEY key) {
-       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch (key) {
+            case UP:
+                this.playerPacman.setDirection(0, -1);
+                break;
+
+            case DOWN:
+                this.playerPacman.setDirection(0, 1);
+                break;
+
+            case LEFT:
+                this.playerPacman.setDirection(-1, 0);
+                break;
+
+            case RIGHT:
+                this.playerPacman.setDirection(1, 0);
+                break;
+        }
     }
 
     protected void collisionDetect() {

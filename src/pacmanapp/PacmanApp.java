@@ -56,7 +56,18 @@ public class PacmanApp extends Application implements API {
         primaryStage.setTitle("Pacman");
         Group root = new Group();
         Scene scene = new Scene(root);
-     
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case UP:    ge.handleKey(GameEngine.KEY.UP); break;
+                    case DOWN:  ge.handleKey(GameEngine.KEY.DOWN); break;
+                    case LEFT:  ge.handleKey(GameEngine.KEY.LEFT); break;
+                    case RIGHT: ge.handleKey(GameEngine.KEY.RIGHT); break;
+                }
+            }
+        }); //handle
+        
         
         Canvas canvas = new Canvas(1000,1000);
         this.gc = canvas.getGraphicsContext2D();
