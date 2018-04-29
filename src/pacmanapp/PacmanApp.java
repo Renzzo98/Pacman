@@ -42,7 +42,7 @@ public class PacmanApp extends Application implements API {
             while (true) {
                 try {
                     Thread.sleep(20);
-                    ge.oneRound();
+                    ge.oneRound(); //Go through one round
                 } catch (InterruptedException ex) {
                     Logger.getLogger(PacmanApp.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -69,16 +69,16 @@ public class PacmanApp extends Application implements API {
         }); //handle
         
         
-        Canvas canvas = new Canvas(1000,1000);
-        this.gc = canvas.getGraphicsContext2D();
+        Canvas canvas = new Canvas(1000,1000); // Set up the window
+        this.gc = canvas.getGraphicsContext2D(); // Get resources
 
         root.getChildren().add(canvas);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        primaryStage.setScene(scene); 
+        primaryStage.show(); // show the resoruces on screen
 
         //2. Create GameEngine
-        this.ge = new GameEngine(this);
-        this.ge.loadMap();
+        this.ge = new GameEngine(this); // Create an instance of the gameEngine
+        this.ge.loadMap(); // Load Asserts
 
         //3. IMPORTANT!! Start a thread or use Timeline/Keyframe!!!
         MyThread mt = new MyThread();
@@ -100,14 +100,14 @@ public class PacmanApp extends Application implements API {
     public void drawImg(String filename, int x, int y, int w, int h) {
         FileInputStream fis = null;
         try {
-            Image ig = map.get(filename);
+            Image ig = map.get(filename); 
             if (ig == null) {
                 String path = "images/" + filename;
-                fis = new FileInputStream(path);
-                ig = new Image(fis);
+                fis = new FileInputStream(path); // Grab an image file from its path
+                ig = new Image(fis); // Create an image object from the image file
                 map.put(filename, ig);
             }
-            this.gc.drawImage(ig, x, y, w, h);
+            this.gc.drawImage(ig, x, y, w, h); // Draw the image on screen
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PacmanApp.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
