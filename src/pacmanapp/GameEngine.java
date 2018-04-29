@@ -80,6 +80,23 @@ public class GameEngine {
         return false;
     }
     
+      protected boolean isContact(int x, int y, int w,int h,int x2,int y2,int w2,int h2)
+    {
+        boolean lefttop = false, leftbot = false, righttop = false, rightbot = false;
+        lefttop = pointinRect(x, y, x2, y2, w2, h2);
+        leftbot = pointinRect(x, y+h, x2, y2, w2, h2);
+        righttop = pointinRect(x+w, y, x2, y2, w2, h2);
+        rightbot = pointinRect(x+w, y+h, x2, y2, w2, h2);
+        if (lefttop || leftbot || righttop || rightbot)
+        {
+            return true;
+        }else{
+            return false;
+        }
+
+         
+    }
+    
     protected void updateAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
