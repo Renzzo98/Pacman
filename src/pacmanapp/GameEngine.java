@@ -65,8 +65,34 @@ public class GameEngine {
     }
 
     protected void collisionDetect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.       
-    }
+        for (Sprite s1 : this.arrSprites) {
+            for (Sprite s2 : this.arrSprites) {
+                if (s1 != s2) {
+                   //if ((x.x <= (y.x + y.w))&& (x.x >= y.x) && (x.y <= (y.y + y.h)) && (x.y >= y.y)) {
+                   if (isContact(s1.getX(),s1.getY(),s1.getW(),s1.getH(),s2.getX(),s2.getY(),s2.getW(),s2.getH())){
+                        if (s1 instanceof Pacman && !(s2 instanceof Pacman)) {
+                            Pacman p = (Pacman) s1;
+                            PacDot d = (PacDot) s2;
+                            d.eaten = true;
+                        } else {
+                            Pacman p = (Pacman) s2;
+                            PacDot d = (PacDot) s1;
+                            d.eaten = true;
+                        }
+                         if (s1 instanceof Pacman && s2 instanceof Pacman) {
+                            Pacman p1 = (Pacman) s1;
+                            Pacman p2 = (Pacman) s2;
+                            p1.dead = true;
+                            p2.dead = true;
+                        }else if (s1 instanceof PacDot && s2 instanceof PacDot){
+                            PacDot d1 = (PacDot) s1;
+                            PacDot d2 = (PacDot) s2;
+                        }
+                    }
+                }
+            }
+        }
+    }//collisionDetect
     
     protected boolean pointinRect(int x, int y, int x2, int y2, int w ,int h)
     {
@@ -78,7 +104,7 @@ public class GameEngine {
             }
         }
         return false;
-    }
+    }//pointinRect
     
       protected boolean isContact(int x, int y, int w,int h,int x2,int y2,int w2,int h2)
     {
@@ -95,7 +121,7 @@ public class GameEngine {
         }
 
          
-    }
+    }//isContact
     
     protected void updateAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
