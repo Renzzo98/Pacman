@@ -23,8 +23,10 @@ public class GameEngine {
     protected Pacman playerPacman;
     protected ArrayList<Sprite> arrSprites = new ArrayList<Sprite>();
     protected ArrayList<Sprite> arrMapTiles = new ArrayList<Sprite>(); ///ADDED new arraylist for map tiles
+    protected Map map = new Map(1000, 1000);
 
     public void loadMap() {
+        map.loadMap(); ////creates grid system using Map class
         FileReader filereader = null;
         int xCoord = 0;
         int yCoord = 0;
@@ -42,7 +44,7 @@ public class GameEngine {
                             this.register(wall);
                             wall.draw(api);
                         } else if (c == 'P') {
-                            Pacman man1 = new Pacman(xCoord, yCoord, 0, -1, 49,49);
+                            Pacman man1 = new Pacman(xCoord+2, yCoord+2, 0, -1, 45, 45);
                             this.register(man1);
                             this.playerPacman = man1;
                             man1.draw(api);
@@ -110,21 +112,31 @@ public class GameEngine {
     };
 
     public void handleKey(KEY key) {
+        MapTile[] mts = map.getNeighbors(this.playerPacman.getMapX(), this.playerPacman.getMapY());
+
         switch (key) {
             case UP:
-                this.playerPacman.setDirection(0, -1);
+                if (!(mts[0].s instanceof Wall)) {
+                    this.playerPacman.setDirection(0, -1);
+                }
                 break;
 
             case DOWN:
-                this.playerPacman.setDirection(0, 1);
+                if (!(mts[2].s instanceof Wall)) {
+                    this.playerPacman.setDirection(0, 1);
+                }
                 break;
 
             case LEFT:
-                this.playerPacman.setDirection(-1, 0);
+                if (!(mts[3].s instanceof Wall)) {
+                    this.playerPacman.setDirection(-1, 0);
+                }
                 break;
 
             case RIGHT:
-                this.playerPacman.setDirection(1, 0);
+                if (!(mts[1].s instanceof Wall)) {
+                    this.playerPacman.setDirection(1, 0);
+                }
                 break;
         }
     }
@@ -154,15 +166,26 @@ public class GameEngine {
                     }
                 }
             }
-            /*if (s1 instanceof Pacman) {
+            if (s1 instanceof Pacman) {
                 for (Sprite s : this.arrMapTiles) {
                     if (isCollapse(s.getX(), s.getY(), s.getW(), s.getH(), s1.getX(), s1.getY(), s1.getW(), s1.getH())) {
                         Pacman p1 = (Pacman) s1;
-                        p1.sx = 0;
-                        p1.sy = 0;
+                        MapTile[] mts = map.getNeighbors(p1.getMapX(), p1.getMapY());
+                        if(mts[0].s instanceof Wall){
+                            p1.y = p1.y+1;
+                        }
+                        if(mts[1].s instanceof Wall){
+                            p1.x = p1.x-1;
+                        }
+                        if(mts[2].s instanceof Wall){
+                            p1.y = p1.y-1;
+                        }
+                        if(mts[3].s instanceof Wall){
+                            p1.x = p1.x+1;
+                        }
                     }
                 }
-            }*/
+            }
         }
     }
 
@@ -187,9 +210,7 @@ public class GameEngine {
         }
         if (x <= x2 + w2 && x + w >= x2 + w2 && y <= y2 + h2 && y + h >= y2 + h2) {
             return true; //rightbot
-        }
-     
-        else {
+        } else {
             return false;
         }
 

@@ -57,6 +57,14 @@ public class Pacman implements Sprite {
         return this.sy;
     }
     
+    public int getMapX(){
+        return this.x/50;
+    }
+    
+    public int getMapY(){
+        return this.y/50;
+    }
+    
     @Override
     public void draw(API api)
     {

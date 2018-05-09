@@ -19,9 +19,9 @@ import java.util.logging.Logger;
  */
 public class Map {
 
-    MapTile[][] map = new MapTile[20][20];
     int w;
     int h;
+    MapTile[][] map = new MapTile[20][20];
 
     public Map(int w, int h) {
         this.w = w;
@@ -48,13 +48,9 @@ public class Map {
                             MapTile mt = new MapTile(xCoord, yCoord, 50, 50, wall);
                             this.map[mapX][mapY] = mt;
 
-                        } else if (c == 'P') {
+                        } else  {
                             PacDot dot = new PacDot(xCoord, yCoord, 50, 50);
                             MapTile mt = new MapTile(xCoord, yCoord, 50, 50, dot);
-                            this.map[mapX][mapY] = mt;
-                        } else if (c == '_') {
-                            PacDot pd = new PacDot(xCoord + 20, yCoord + 20, 15, 15);
-                            MapTile mt = new MapTile(xCoord, yCoord, 50, 50, pd);
                             this.map[mapX][mapY] = mt;
                         }
                         xCoord += 50;
@@ -79,16 +75,16 @@ public class Map {
         }
 
     }
-    
-    public MapTile[] getNeighbors(int x, int y){
+
+    public MapTile[] getNeighbors(int x, int y) {
         MapTile[] neighbors = new MapTile[4];
         ///Up is 0, Right is 1, Down is 2, Left is 3
-        
-        neighbors[0]= map[x][y-1];
-        neighbors[1]= map[x+1][y];
-        neighbors[2]= map[x][y+1];
-        neighbors[3]= map[x-1][y];
-        
+
+        neighbors[0] = map[x][y - 1];
+        neighbors[1] = map[x + 1][y];
+        neighbors[2] = map[x][y + 1];
+        neighbors[3] = map[x - 1][y];
+
         return neighbors;
     }
 

@@ -45,4 +45,8 @@ public class MapTile {
         return this.h;
     }
     
+    public Sprite getS()
+    {
+        return this.s;
+    }
 }
