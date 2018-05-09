@@ -9,14 +9,13 @@ package pacmanapp;
  *
  * @author csc190
  */
-public class PacDot implements Sprite{
-    protected boolean eaten = false; //changes to true when collision is detected with pacman and is removed
+public class MapTile implements Sprite{
     protected int x;
     protected int y;
     protected int w;
     protected int h;
     
-    public PacDot(int x, int y, int w, int h)
+    public MapTile(int x, int y, int w, int h)
     {
         this.x = x;
         this.y = y;
@@ -54,10 +53,9 @@ public class PacDot implements Sprite{
    @Override
     public void draw(API api)
     {
-        if(eaten!=true){
-        String pic = "blackdot.png";
+        String pic = "wall.png";
         api.drawImg(pic,x,y,w,h);
-        }
+        
     }
     
 }

@@ -10,5 +10,8 @@ package pacmanapp;
  * @author csc190
  */
 public interface API {
-    public void drawImage(String picName, int xCoord, int yCoord, int width, int height);
+    
+    public void drawImg(String picName, int xCoord, int yCoord, int width, int height);
+    
+    public void clear();
 }
