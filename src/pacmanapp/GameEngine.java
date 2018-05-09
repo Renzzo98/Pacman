@@ -38,9 +38,9 @@ public class GameEngine {
                     for (int i = 0; i < line.length(); i++) {
                         char c = line.charAt(i);
                         if (c == 'W') {
-                            MapTile mt = new MapTile(xCoord, yCoord, 50, 50);
-                            this.register(mt);
-                            mt.draw(api);
+                            Wall wall = new Wall(xCoord, yCoord, 50, 50);
+                            this.register(wall);
+                            wall.draw(api);
                         } else if (c == 'P') {
                             Pacman man1 = new Pacman(xCoord, yCoord, 0, -1, 49,49);
                             this.register(man1);
@@ -72,7 +72,7 @@ public class GameEngine {
     }
 
     public void register(Sprite s) {
-        if (s instanceof MapTile) {
+        if (s instanceof Wall) {
             this.arrMapTiles.add(s);
         } else {
             this.arrSprites.add(s);
@@ -154,7 +154,7 @@ public class GameEngine {
                     }
                 }
             }
-            if (s1 instanceof Pacman) {
+            /*if (s1 instanceof Pacman) {
                 for (Sprite s : this.arrMapTiles) {
                     if (isCollapse(s.getX(), s.getY(), s.getW(), s.getH(), s1.getX(), s1.getY(), s1.getW(), s1.getH())) {
                         Pacman p1 = (Pacman) s1;
@@ -162,7 +162,7 @@ public class GameEngine {
                         p1.sy = 0;
                     }
                 }
-            }
+            }*/
         }
     }
 

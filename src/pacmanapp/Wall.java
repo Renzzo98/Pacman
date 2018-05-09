@@ -9,20 +9,18 @@ package pacmanapp;
  *
  * @author csc190
  */
-public class MapTile {
+public class Wall implements Sprite{
     protected int x;
     protected int y;
     protected int w;
     protected int h;
-    protected Sprite s;
     
-    public MapTile(int x, int y, int w, int h, Sprite s)
+    public Wall(int x, int y, int w, int h)
     {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        this.s = s;
     }
     
     public int getX()
@@ -43,6 +41,21 @@ public class MapTile {
     public int getH()
     {
         return this.h;
+    }
+ 
+
+    @Override
+    public void update() {
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   @Override
+    public void draw(API api)
+    {
+        String pic = "wall.png";
+        api.drawImg(pic,x,y,w,h);
+        
     }
     
 }
