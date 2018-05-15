@@ -9,42 +9,24 @@ package pacmanapp;
  *
  * @author csc190
  */
-public class MovingSprite implements Sprite {
+public abstract class MovingSprite {
+    
+    protected int x, y, w, h, sx, sy, mx, my;
     
     protected void setDirection(int x, int y)
     {
         
     }
-
-    @Override
-    public void draw(API api) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getX() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getY() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getW() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getH() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public boolean setDir(int dir){
+        //setDir(int)
+        return true;
     }
     
-    
+    public abstract int getSX();
+    public abstract int getSY();
+    public abstract int getX();
+    public abstract int getY();
+    public abstract void setX(int x);
+    public abstract void setY(int y);
 }

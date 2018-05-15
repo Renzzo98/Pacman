@@ -11,6 +11,11 @@ package pacmanapp;
  */
 public class Pinky extends EnemySprite{
     
+    public Pinky(int x, int y, int sx, int sy) {
+        super(x, y, sx, sy);
+        super.setPic(0);
+    }
+    
     @Override
     protected int AI(){
         return 1;

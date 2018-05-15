@@ -25,7 +25,7 @@ public class GameEngine {
     protected ArrayList<Sprite> arrSprites = new ArrayList<Sprite>();
     protected ArrayList<Sprite> arrMapTiles = new ArrayList<Sprite>(); ///ADDED new arraylist for map tiles
     protected Map map = new Map(1000, 1000);
-    
+
     protected int HS = 0;
 
     public void loadMap() {
@@ -47,7 +47,7 @@ public class GameEngine {
                             this.register(wall);
                             wall.draw(api);
                         } else if (c == 'P') {
-                            Pacman man1 = new Pacman(xCoord+2, yCoord+2, 0, -1, 45, 45);
+                            Pacman man1 = new Pacman(xCoord + 2, yCoord + 2, 0, -1, 45, 45);
                             this.register(man1);
                             this.playerPacman = man1;
                             man1.draw(api);
@@ -123,9 +123,9 @@ public class GameEngine {
             return 1;
         }
     }
-    
+
     public void handleKey(KEY key) {
-        MapTile[] mts = map.getNeighbors(this.playerPacman.getMapX(), this.playerPacman.getMapY());
+        MapTile[] mts = map.getNeighbors(this.playerPacman.getMX(), this.playerPacman.getMY());
 
         switch (key) {
             case UP:
@@ -177,10 +177,35 @@ public class GameEngine {
                 }
             }
             if (s1 instanceof Pacman) {
-                for (Sprite s : this.arrMapTiles) {
-                    if (isCollapse(s.getX(), s.getY(), s.getW(), s.getH(), s1.getX(), s1.getY(), s1.getW(), s1.getH())) {
+                for (Sprite w : this.arrMapTiles) {
+                    boolean val1 = isCollapse(w.getX(), w.getY(), w.getW(), w.getH(), s1.getX(), s1.getY(), s1.getW(), s1.getH());
+                    boolean val2 = isCollapse(s1.getX(), s1.getY(), s1.getW(), s1.getH(), w.getX(), w.getY(), w.getW(), w.getH());
+                    if (val1 || val2) {
+                        Pacman p1 = (Pacman) s1;
+                        if (p1.getSX() == 1 && p1.getSY() == 0) {//right
+                            this.playerPacman.setX(p1.getX() - 3);
+                            this.playerPacman.setDirection(0, 0);
+                            //this.playerPacman.setX(x2);
+                        } else if (p1.getSX() == -1 && p1.getSY() == 0) {//left                       
+                            this.playerPacman.setX(p1.getX() + 3);
+                            this.playerPacman.setDirection(0, 0);
+                        } else if (p1.getSX() == 0 && p1.getSY() == 1) {//down
+                            this.playerPacman.setY(p1.getY() - 3);
+                            this.playerPacman.setDirection(0, 0);
+                            //this.playerPacman.
+                        } else if (p1.getSX() == 0 && p1.getSY() == -1) {//up
+                            this.playerPacman.setY(p1.getY() + 3);
+                            this.playerPacman.setDirection(0, 0);
+                        } else {
+                            System.out.println("invalid");
+                            return;
+                        }
+
+                        /*    
                         Pacman p1 = (Pacman) s1;
                         MapTile[] mts = map.getNeighbors(p1.getMapX(), p1.getMapY());
+                        
+                        
                         if(mts[0].s instanceof Wall){
                             p1.y = p1.y+1;
                         }
@@ -193,21 +218,26 @@ public class GameEngine {
                         if(mts[3].s instanceof Wall){
                             p1.x = p1.x+1;
                         }
+                         */
                     }
+
                 }
             }
         }
     }
 
-    /*protected boolean pointinRect(int x, int y, int x2, int y2, int w, int h) {
+    /*
+    protected boolean pointinRect(int x, int y, int x2, int y2, int w, int h) {
         if (x2 <= x && x <= (x2 + w)) {
             if (y2 <= y && y <= (y2 + h)) {
                 return true;
             }
         }
         return false;
-    }*/
+    }
+     */
     protected boolean isCollapse(int x, int y, int w, int h, int x2, int y2, int w2, int h2) {
+
         //boolean lefttop = false, leftbot = false, righttop = false, rightbot = false;
         if (x <= x2 && x + w >= x2 && y <= y2 && y + h >= y2) {
             return true;//lefttope
@@ -223,9 +253,8 @@ public class GameEngine {
         } else {
             return false;
         }
-
     }
-
+    
     protected void updateAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

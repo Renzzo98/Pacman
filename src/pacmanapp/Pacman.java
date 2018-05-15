@@ -9,12 +9,13 @@ package pacmanapp;
  *
  * @author csc190
  */
-public class Pacman implements Sprite {
+public class Pacman extends MovingSprite implements Sprite {
     protected int x, y, sx, sy, w, h;
     protected boolean dead = false;
     protected String[] arrPics = {
         "Pacman1.png", "Pacman2.png","Pacman3.png"
     };
+    
     protected int picIdx = 0;
     
     public Pacman(int x, int y, int sx, int sy, int w, int h)
@@ -25,44 +26,73 @@ public class Pacman implements Sprite {
         this.sy = sy;
         this.w = w;
         this.h = h;
+        this.mx = x;
+        this.my = y;
     }
     
+    @Override
     public int getX()
     {
         return this.x;
     }
 
+    @Override
     public int getY()
     {
        return this.y;
     }
-            
+         
+    @Override
     public int getW()
     {
         return this.w;
     }
    
+    @Override
     public int getH()
     {
         return this.h;
     }
     
+    @Override
     public int getSX()
     {
         return this.sx;
     }
-       
+      
+    @Override
     public int getSY()
     {
         return this.sy;
     }
     
-    public int getMapX(){
-        return this.x/50;
+ 
+    public int getMX(){
+        return this.mx;
     }
     
-    public int getMapY(){
-        return this.y/50;
+    public int getMY(){
+        return this.my;
+    }
+    
+    @Override
+    public void setX(int x){
+        this.x = x;
+        this.setMX();
+    }
+    
+    @Override
+    public void setY(int y){
+        this.y= y;
+        this.setMY();
+    }
+    
+    public void setMX(){
+        this.mx = this.x/50;
+    }
+   
+    public void setMY(){
+        this.my = this.y/50;
     }
     
     @Override
