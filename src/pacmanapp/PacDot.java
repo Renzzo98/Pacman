@@ -60,4 +60,15 @@ public class PacDot implements Sprite{
         }
     }
     
+    
+  public void isEaten(Score HS)
+    {
+        if (eaten!= true)
+        {
+            eaten = true;
+            HS.score+= 100;
+        }
+        
+    }
+    
 }
