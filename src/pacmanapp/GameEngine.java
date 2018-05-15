@@ -24,6 +24,7 @@ public class GameEngine {
     protected ArrayList<Sprite> arrSprites = new ArrayList<Sprite>();
     protected ArrayList<Sprite> arrMapTiles = new ArrayList<Sprite>(); ///ADDED new arraylist for map tiles
     protected Map map = new Map(1000, 1000);
+    protected Score HS = new Score();
 
     public void loadMap() {
         map.loadMap(); ////creates grid system using Map class
@@ -44,7 +45,7 @@ public class GameEngine {
                             this.register(wall);
                             wall.draw(api);
                         } else if (c == 'P') {
-                            Pacman man1 = new Pacman(xCoord+5, yCoord+5, 0, -1, 40, 40);
+                            Pacman man1 = new Pacman(xCoord + 5, yCoord + 5, 0, -1, 40, 40);
                             this.register(man1);
                             this.playerPacman = man1;
                             man1.draw(api);
@@ -52,6 +53,10 @@ public class GameEngine {
                             PacDot pd = new PacDot(xCoord + 20, yCoord + 20, 15, 15);
                             this.register(pd);
                             pd.draw(api);
+                        } else if (c == 'G') {
+                            Pinky ghost1 = new Pinky(xCoord + 5, yCoord + 5, 0, 0, 40, 40, this.playerPacman);
+                            this.register(ghost1);
+                            ghost1.draw(api);
                         }
                         xCoord += 50;
                     }
@@ -149,7 +154,7 @@ public class GameEngine {
                         if (s1 instanceof Pacman && s2 instanceof PacDot) {
                             Pacman p = (Pacman) s1;
                             PacDot d = (PacDot) s2;
-                            d.eaten = true;
+                            d.isEaten(HS);
                         } else if (s1 instanceof PacDot && s2 instanceof Pacman) {
                             Pacman p = (Pacman) s2;
                             PacDot d = (PacDot) s1;
@@ -171,17 +176,17 @@ public class GameEngine {
                     if (isCollapse(s.getX(), s.getY(), s.getW(), s.getH(), s1.getX(), s1.getY(), s1.getW(), s1.getH())) {
                         Pacman p1 = (Pacman) s1;
                         MapTile[] mts = map.getNeighbors(p1.getMapX(), p1.getMapY());
-                        if(mts[0].s instanceof Wall){
-                            p1.y = p1.y+1;
+                        if (mts[0].s instanceof Wall) {
+                            p1.y = p1.y + 1;
                         }
-                        if(mts[1].s instanceof Wall){
-                            p1.x = p1.x-1;
+                        if (mts[1].s instanceof Wall) {
+                            p1.x = p1.x - 1;
                         }
-                        if(mts[2].s instanceof Wall){
-                            p1.y = p1.y-1;
+                        if (mts[2].s instanceof Wall) {
+                            p1.y = p1.y - 1;
                         }
-                        if(mts[3].s instanceof Wall){
-                            p1.x = p1.x+1;
+                        if (mts[3].s instanceof Wall) {
+                            p1.x = p1.x + 1;
                         }
                     }
                 }
@@ -214,6 +219,10 @@ public class GameEngine {
             return false;
         }
 
+    }
+
+    public int endCondition() {
+        return 0;
     }
 
     protected void updateAll() {
