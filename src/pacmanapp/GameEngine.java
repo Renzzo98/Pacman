@@ -166,7 +166,6 @@ public class GameEngine {
                             Pacman p = (Pacman) s1;
                             PacDot d = (PacDot) s2;
                             d.isEaten(HS);
-                            
                         } else if (s1 instanceof Pacman && s2 instanceof Pacman) {
                             Pacman p1 = (Pacman) s1;
                             Pacman p2 = (Pacman) s2;
@@ -181,6 +180,24 @@ public class GameEngine {
             }
             if (s1 instanceof Pacman) {
                 for (Sprite w : this.arrMapTiles) {
+          
+                     if (isCollapse(w.getX(), w.getY(), w.getW(), w.getH(), s1.getX(), s1.getY(), s1.getW(), s1.getH())) {
+                        Pacman p1 = (Pacman) s1;
+                        MapTile[] mts = map.getNeighbors(p1.getMX(), p1.getMY());
+                        if(mts[0].s instanceof Wall){
+                            p1.y = p1.y+1;
+                        }
+                        if(mts[1].s instanceof Wall){
+                            p1.x = p1.x-1;
+                        }
+                        if(mts[2].s instanceof Wall){
+                            p1.y = p1.y-1;
+                        }
+                        if(mts[3].s instanceof Wall){
+                            p1.x = p1.x+1;
+                    
+                    
+                    /*
                     boolean val1 = isCollapse(w.getX(), w.getY(), w.getW(), w.getH(), s1.getX(), s1.getY(), s1.getW(), s1.getH());
                     boolean val2 = isCollapse(s1.getX(), s1.getY(), s1.getW(), s1.getH(), w.getX(), w.getY(), w.getW(), w.getH());
                     if (val1 || val2) {
@@ -202,9 +219,8 @@ public class GameEngine {
                         } else {
                             System.out.println("invalid");
                             return;
-                        }
-
-                        /*    
+                        
+                           
                         Pacman p1 = (Pacman) s1;
                         MapTile[] mts = map.getNeighbors(p1.getMapX(), p1.getMapY());
                         
@@ -222,8 +238,9 @@ public class GameEngine {
                             p1.x = p1.x+1;
                         }
                          */
-                    }
+                        }
 
+                    }
                 }
             }
         }
