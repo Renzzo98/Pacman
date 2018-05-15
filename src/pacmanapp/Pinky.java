@@ -20,8 +20,9 @@ public class Pinky implements Sprite {
     };
     protected int picIdx = 0;
     protected Pacman player;
+    protected Map map;
 
-    public Pinky(int x, int y, int sx, int sy, int w, int h, Pacman player) {
+    public Pinky(int x, int y, int sx, int sy, int w, int h, Pacman player, Map map) {
         this.x = x;
         this.y = y;
         this.sx = sx;
@@ -29,6 +30,7 @@ public class Pinky implements Sprite {
         this.w = w;
         this.h = h;
         this.player = player;
+        this.map = map;
     }
 
     @Override
@@ -94,17 +96,26 @@ public class Pinky implements Sprite {
 
     public void AI() {
         Random rand = new Random();
+        MapTile[] mts = map.getNeighbors(this.getMapX(), this.getMapY());
         if (rand.nextInt(2) == 1) {
             if (this.player.x < this.x) {
-                this.setDirection(-1, 0);
+                if (!(mts[3].s instanceof Wall)) {
+                    this.setDirection(-1, 0);
+                }
             } else {
-                this.setDirection(1, 0);
+                if (!(mts[1].s instanceof Wall)) {
+                    this.setDirection(1, 0);
+                }
             }
         } else {
             if (this.player.y < this.y) {
-                this.setDirection(0, -1);
+                if (!(mts[0].s instanceof Wall)) {
+                    this.setDirection(0, -1);
+                }
             } else {
-                this.setDirection(0, 1);
+                if (!(mts[2].s instanceof Wall)) {
+                    this.setDirection(0, 1);
+                }
             }
         }
 

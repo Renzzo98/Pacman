@@ -54,7 +54,7 @@ public class GameEngine {
                             this.register(pd);
                             pd.draw(api);
                         } else if (c == 'G') {
-                            Pinky ghost1 = new Pinky(xCoord + 5, yCoord + 5, 0, 0, 40, 40, this.playerPacman);
+                            Pinky ghost1 = new Pinky(xCoord + 5, yCoord + 5, 0, 0, 40, 40, this.playerPacman, this.map);
                             this.register(ghost1);
                             ghost1.draw(api);
                         }
@@ -175,6 +175,26 @@ public class GameEngine {
                 for (Sprite s : this.arrMapTiles) {
                     if (isCollapse(s.getX(), s.getY(), s.getW(), s.getH(), s1.getX(), s1.getY(), s1.getW(), s1.getH())) {
                         Pacman p1 = (Pacman) s1;
+                        MapTile[] mts = map.getNeighbors(p1.getMapX(), p1.getMapY());
+                        if (mts[0].s instanceof Wall) {
+                            p1.y = p1.y + 1;
+                        }
+                        if (mts[1].s instanceof Wall) {
+                            p1.x = p1.x - 1;
+                        }
+                        if (mts[2].s instanceof Wall) {
+                            p1.y = p1.y - 1;
+                        }
+                        if (mts[3].s instanceof Wall) {
+                            p1.x = p1.x + 1;
+                        }
+                    }
+                }
+            }
+             if (s1 instanceof Pinky) {
+                for (Sprite s : this.arrMapTiles) {
+                    if (isCollapse(s.getX(), s.getY(), s.getW(), s.getH(), s1.getX(), s1.getY(), s1.getW(), s1.getH())) {
+                        Pinky p1 = (Pinky) s1;
                         MapTile[] mts = map.getNeighbors(p1.getMapX(), p1.getMapY());
                         if (mts[0].s instanceof Wall) {
                             p1.y = p1.y + 1;
