@@ -75,7 +75,7 @@ public class PacmanApp extends Application implements API {
                                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        HScore.setText("High Score: " + ge.HS);
+                        HScore.setText("High Score: " + ge.HS.score);
                         
                     }
                 });

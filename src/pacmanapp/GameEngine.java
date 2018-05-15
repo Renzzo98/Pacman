@@ -26,7 +26,7 @@ public class GameEngine {
     protected ArrayList<Sprite> arrMapTiles = new ArrayList<Sprite>(); ///ADDED new arraylist for map tiles
     protected Map map = new Map(1000, 1000);
 
-    protected int HS = 0;
+    Score HS = new Score();
 
     public void loadMap() {
         map.loadMap(); ////creates grid system using Map class
@@ -115,6 +115,7 @@ public class GameEngine {
     };
 
     public int endCondition() {
+        /*
         if (HS == dots.size() * 100) {
             return 2;
         }//else if(touched){
@@ -122,6 +123,8 @@ public class GameEngine {
         else {
             return 1;
         }
+        */
+        return 0;
     }
 
     public void handleKey(KEY key) {
@@ -162,8 +165,8 @@ public class GameEngine {
                         if (s1 instanceof Pacman && s2 instanceof PacDot) {
                             Pacman p = (Pacman) s1;
                             PacDot d = (PacDot) s2;
-                            HS += 100;
-                            d.eaten = true;
+                            d.isEaten(HS);
+                            
                         } else if (s1 instanceof Pacman && s2 instanceof Pacman) {
                             Pacman p1 = (Pacman) s1;
                             Pacman p2 = (Pacman) s2;
