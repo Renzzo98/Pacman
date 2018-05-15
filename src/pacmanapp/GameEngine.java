@@ -21,9 +21,12 @@ import java.util.logging.Logger;
 public class GameEngine {
 
     protected Pacman playerPacman;
+    protected ArrayList<PacDot> dots = new ArrayList<PacDot>();
     protected ArrayList<Sprite> arrSprites = new ArrayList<Sprite>();
     protected ArrayList<Sprite> arrMapTiles = new ArrayList<Sprite>(); ///ADDED new arraylist for map tiles
     protected Map map = new Map(1000, 1000);
+    
+    protected int HS = 0;
 
     public void loadMap() {
         map.loadMap(); ////creates grid system using Map class
@@ -111,6 +114,16 @@ public class GameEngine {
         UP, DOWN, LEFT, RIGHT
     };
 
+    public int endCondition() {
+        if (HS == dots.size() * 100) {
+            return 2;
+        }//else if(touched){
+        //    return 3;
+        else {
+            return 1;
+        }
+    }
+    
     public void handleKey(KEY key) {
         MapTile[] mts = map.getNeighbors(this.playerPacman.getMapX(), this.playerPacman.getMapY());
 
@@ -149,10 +162,7 @@ public class GameEngine {
                         if (s1 instanceof Pacman && s2 instanceof PacDot) {
                             Pacman p = (Pacman) s1;
                             PacDot d = (PacDot) s2;
-                            d.eaten = true;
-                        } else if (s1 instanceof PacDot && s2 instanceof Pacman) {
-                            Pacman p = (Pacman) s2;
-                            PacDot d = (PacDot) s1;
+                            HS += 100;
                             d.eaten = true;
                         } else if (s1 instanceof Pacman && s2 instanceof Pacman) {
                             Pacman p1 = (Pacman) s1;

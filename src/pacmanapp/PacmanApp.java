@@ -13,6 +13,7 @@ import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -52,8 +53,12 @@ public class PacmanApp extends Application implements API {
     
     protected BorderPane border = new BorderPane();
     protected AnchorPane mainscreen = new AnchorPane();
-    //protected MyThread mt;
+    protected MyThread mt;
     protected Label HScore = new Label();
+    
+    protected enum CONDITION {
+        WIN, LOSE, CONTINUE
+    };
 
     class MyThread extends Thread {
 
@@ -66,6 +71,42 @@ public class PacmanApp extends Application implements API {
                 } catch (InterruptedException ex) {
                     Logger.getLogger(PacmanApp.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
+                                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        HScore.setText("High Score: " + ge.HS);
+                        
+                    }
+                });
+
+                switch (ge.endCondition()) {
+                    case 1:
+                        ge.oneRound();
+                        break;
+                    case 2:
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+//                                score.setText("High Score: " + ge.score + " You Win!!!");
+
+                                gameOverMenu(root, primaryStage, true);
+                                mt.stop();
+                            }
+                        });
+                        break;
+                    case 3:
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+//                                score.setText("High Score: " + ge.score + " You LOST!!! LOSER!");
+                                gameOverMenu(root, primaryStage, false);
+                                mt.stop();
+                            }
+                        });
+                        break;
+                }
+
             }
         }
     }
@@ -108,7 +149,36 @@ public class PacmanApp extends Application implements API {
 
         return vbox;
         
-                
+    }
+    
+    protected VBox gameOverMenu(Group root, Stage primarystage, boolean condition)
+    {
+        Button exitGame = new Button();
+        exitGame.setText("Exit Game");
+        exitGame.setStyle("-fx-text-fill: black; -fx-border-color: blue;");
+        exitGame.setOnAction((ActionEvent e) -> {
+            Stage n = (Stage) primaryStage.getScene().getWindow();
+            n.close();
+        });
+        
+        VBox vbox = new VBox();
+        vbox.setPrefHeight(1000);
+        vbox.setPrefWidth(1000);
+        vbox.setPadding(new Insets(10));
+        vbox.setSpacing(8);
+        Label gameTitle = new Label();
+        gameTitle.setText("GAME OVER");
+        gameTitle.setFont(Font.font(35));
+        gameTitle.setStyle("-fx-text-fill: black;");
+        vbox.getChildren().add(gameTitle);
+
+        VBox.setMargin(exitGame, new Insets(0, 0, 0, 8));
+        vbox.getChildren().add(exitGame);
+
+        vbox.setAlignment(Pos.CENTER);
+
+        return vbox;
+        
     }
     
     /*
@@ -170,7 +240,7 @@ public class PacmanApp extends Application implements API {
         border.setTop(HScore);
         
         HScore.setTextFill(Color.WHITESMOKE);
-        HScore.setStyle("-fx-text-fill: white; -fx-border-color: blue;-fx-background-color: black;");
+        HScore.setStyle("-fx-text-fill: black; -fx-border-color: blue;");
         HScore.setFont(Font.font(20));
         
         // Start a thread or use Timeline/Keyframe!!!
