@@ -44,7 +44,7 @@ public class GameEngine {
                             this.register(wall);
                             wall.draw(api);
                         } else if (c == 'P') {
-                            Pacman man1 = new Pacman(xCoord+2, yCoord+2, 0, -1, 45, 45);
+                            Pacman man1 = new Pacman(xCoord+5, yCoord+5, 0, -1, 40, 40);
                             this.register(man1);
                             this.playerPacman = man1;
                             man1.draw(api);
