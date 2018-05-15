@@ -9,6 +9,10 @@ package pacmanapp;
  *
  * @author csc190
  */
-public class Pinky {
+public class Pinky extends EnemySprite{
     
+    @Override
+    protected int AI(){
+        return 1;
+    }
 }
