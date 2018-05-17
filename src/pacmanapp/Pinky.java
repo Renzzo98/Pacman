@@ -98,6 +98,71 @@ public class Pinky implements Sprite {
     public void AI() {
         Random rand = new Random();
         MapTile[] mts = map.getNeighbors(this.getMapX(), this.getMapY());
+     
+        if (this.player.getX() >= this .x) // Pacman is on the right
+        {
+            if (this.player.getY() <= this.y) // Pacman is on top of you
+            {
+               if(this.player.getY() == this.y)
+               {
+                if(!(mts[1].s instanceof Wall))// GO RIGHT
+                {
+                    this.setDirection(1,0);
+                    this.bounced = false;
+                } 
+               }else{
+                if(!(mts[0].s instanceof Wall))// GO UP
+                {
+                    this.setDirection(0,-1);
+                    this.bounced = false;
+                }
+                if(!(mts[1].s instanceof Wall))// GO RIGHT
+                {
+                    this.setDirection(1,0);
+                    this.bounced = false;
+                }
+              }  
+            }else if(this.player.getY() >= this.y) // Pacman is below of you
+            {
+               if(!(mts[2].s instanceof Wall))// GO DOWN
+               {
+                    this.setDirection(0,1);
+                    this.bounced = false;
+               }else if(!(mts[1].s instanceof Wall))// GO RIGHT
+               {
+                    this.setDirection(1,0);
+                    this.bounced = false;
+               }
+           }
+        }else// Pacman is on the left
+        {
+            if (this.player.getY() <= this.y) // Pacman is on top of you
+            {
+                if(!(mts[0].s instanceof Wall))//GO UP
+                {
+                    this.setDirection(0,-1);
+                    this.bounced = false;
+                }else if(!(mts[3].s instanceof Wall)) // GO LEFT
+                {
+                    this.setDirection(-1,0);
+                    this.bounced = false;
+                }
+                
+            }else if(this.player.getY() >= this.y) // Pacman is below of you
+            {
+               if(!(mts[2].s instanceof Wall)) // Go DOWN
+               {
+                    this.setDirection(0,1);
+                    this.bounced = false;
+               }else if(!(mts[3].s instanceof Wall)) // GO LEFT
+               {
+                    this.setDirection(-1,0);
+                    this.bounced = false;
+               }
+            }
+        }
+        
+        /*
         if (rand.nextInt(2) == 1) {
             if (this.player.x < this.x) {
                 if (!(mts[3].s instanceof Wall)) {
@@ -123,6 +188,7 @@ public class Pinky implements Sprite {
                 }
             }
         }
+        */
 
     }
 

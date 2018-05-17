@@ -34,7 +34,7 @@ public class Inky implements Sprite{
         this.map = map;
     }
     
-     @Override
+    @Override
     public void draw(API api) {
         if (dead != true) {
             String pic = this.arrPics[this.picIdx];
