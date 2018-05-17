@@ -57,6 +57,18 @@ public class GameEngine {
                             Pinky ghost1 = new Pinky(xCoord + 5, yCoord + 5, 0, 0, 40, 40, this.playerPacman, this.map);
                             this.register(ghost1);
                             ghost1.draw(api);
+                        } else if (c == 'B'){
+                            Blinky ghost2 = new Blinky(xCoord + 5, yCoord + 5, 0, 0, 40, 40, this.playerPacman, this.map);
+                            this.register(ghost2);
+                            ghost2.draw(api);
+                        }else if (c == 'C'){
+                            Clyde ghost3 = new Clyde(xCoord + 5, yCoord + 5, 0, 0, 40, 40, this.playerPacman, this.map);
+                            this.register(ghost3);
+                            ghost3.draw(api);
+                        }else if (c == 'I'){
+                            Inky ghost4 = new Inky(xCoord + 5, yCoord + 5, 0, 0, 40, 40, this.playerPacman, this.map);
+                            this.register(ghost4);
+                            ghost4.draw(api);
                         }
                         xCoord += 50;
                     }
