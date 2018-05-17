@@ -82,7 +82,7 @@ public class Pacman implements Sprite {
         counter++;
         this.x += this.sx;
         this.y += this.sy;
-        if(counter%25 == 0)
+        if(counter%10 == 0)
         {
             this.picIdx = (picIdx+1)%this.arrPics.length;
         }

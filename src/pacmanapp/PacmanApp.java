@@ -6,9 +6,11 @@
 package pacmanapp;
 
 //import java.awt.Insets;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import javafx.util.Duration;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,6 +33,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.Font;
@@ -53,6 +59,7 @@ public class PacmanApp extends Application implements API {
     
     protected BorderPane border = new BorderPane();
     protected AnchorPane mainscreen = new AnchorPane();
+    protected MediaPlayer mp;
     protected MyThread mt;
     protected Label HScore = new Label();
     
@@ -253,6 +260,28 @@ public class PacmanApp extends Application implements API {
         
         border.prefWidthProperty().bind(scene.widthProperty());
         border.prefHeightProperty().bind(scene.heightProperty());
+        
+        
+        // Music
+        //String path = PacmanApp.class.getResource("Empire.wav").toString();
+        String url = "Empire.wav";
+        Media song = new Media(new File(url).toURI().toString());
+        MediaPlayer mp = new MediaPlayer(song);
+        mp.setCycleCount(AudioClip.INDEFINITE);
+
+        mp.setOnEndOfMedia(new Runnable() {
+            public void run() {
+                //mp.stop();
+                mp.seek(Duration.ZERO);
+                mp.play();
+            }
+        });
+
+        MediaView mediaView = new MediaView(mp);
+        ((Group) scene.getRoot()).getChildren().add(mediaView);
+
+        mp.play();
+        
         
         
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
