@@ -2,11 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/home/csc190/Desktop/Pacman/Pacman/src/pacmanapp/GameEngine.java</file>
             <file>file:/home/csc190/Desktop/Pacman/Pacman/src/pacmanapp/PacmanApp.java</file>
             <file>file:/home/csc190/Desktop/Pacman/Pacman/src/pacmanapp/Pacman.java</file>
             <file>file:/home/csc190/Desktop/Pacman/Pacman/src/pacmanapp/PacDot.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> 4510df62d10472b05d0f1dc186999537bac9f2ff
     </open-files>
 </project-private>

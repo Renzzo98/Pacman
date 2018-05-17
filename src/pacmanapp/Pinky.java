@@ -19,6 +19,7 @@ public class Pinky implements Sprite {
         "Pinky.png"
     };
     protected int picIdx = 0;
+    protected boolean bounced = false;
     protected Pacman player;
     protected Map map;
 
@@ -101,20 +102,24 @@ public class Pinky implements Sprite {
             if (this.player.x < this.x) {
                 if (!(mts[3].s instanceof Wall)) {
                     this.setDirection(-1, 0);
+                    this.bounced = false;
                 }
             } else {
                 if (!(mts[1].s instanceof Wall)) {
                     this.setDirection(1, 0);
+                    this.bounced = false;
                 }
             }
         } else {
             if (this.player.y < this.y) {
                 if (!(mts[0].s instanceof Wall)) {
                     this.setDirection(0, -1);
+                    this.bounced = false;
                 }
             } else {
                 if (!(mts[2].s instanceof Wall)) {
                     this.setDirection(0, 1);
+                    this.bounced = false;
                 }
             }
         }

@@ -16,6 +16,8 @@ public class Pacman implements Sprite {
         "Pacman1.png", "Pacman2.png","Pacman3.png"
     };
     protected int picIdx = 0;
+    protected boolean bounced = false; //has pacman recently been bounced away from a wall 
+    //protected boolean Hbounced = false; //has pacman recently been bounced away from a wall vertically
     
     public Pacman(int x, int y, int sx, int sy, int w, int h)
     {

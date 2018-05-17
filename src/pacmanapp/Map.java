@@ -48,7 +48,7 @@ public class Map {
                             MapTile mt = new MapTile(xCoord, yCoord, 50, 50, wall);
                             this.map[mapX][mapY] = mt;
 
-                        } else  {
+                        } else {
                             PacDot dot = new PacDot(xCoord, yCoord, 50, 50);
                             MapTile mt = new MapTile(xCoord, yCoord, 50, 50, dot);
                             this.map[mapX][mapY] = mt;
@@ -80,10 +80,21 @@ public class Map {
         MapTile[] neighbors = new MapTile[4];
         ///Up is 0, Right is 1, Down is 2, Left is 3
 
-        neighbors[0] = map[x][y - 1];
+        if (y != 0) {
+            neighbors[0] = map[x][y - 1];
+        }
+        else{
+            neighbors[0] = map[x][0];
+        }
         neighbors[1] = map[x + 1][y];
         neighbors[2] = map[x][y + 1];
-        neighbors[3] = map[x - 1][y];
+        if (x != 0) {
+            neighbors[3] = map[x - 1][y];
+        }
+         else{
+            neighbors[3] = map[x][0];
+        }
+        
 
         return neighbors;
     }
