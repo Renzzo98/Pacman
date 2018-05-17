@@ -69,6 +69,10 @@ public class GameEngine {
                             Inky ghost4 = new Inky(xCoord + 5, yCoord + 5, 0, 0, 35, 35, this.playerPacman, this.map);
                             this.register(ghost4);
                             ghost4.draw(api);
+                        }else if (c == 'F'){
+                            Fruit fr = new Fruit(xCoord+5, yCoord+5, 35, 35);
+                            this.register(fr);
+                            fr.draw(api);
                         }
                         xCoord += 50;
                     }
@@ -222,6 +226,11 @@ public class GameEngine {
                         } else if (s1 instanceof PacDot && s2 instanceof PacDot) {
                             PacDot d1 = (PacDot) s1;
                             PacDot d2 = (PacDot) s2;
+                        } else if (s1 instanceof Pacman && s2 instanceof Fruit)
+                        {
+                            Pacman p1 = (Pacman) s1;
+                            Fruit f1 = (Fruit) s2;
+                            f1.isEaten(HS);
                         }
                     }
                 }
