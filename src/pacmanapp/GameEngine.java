@@ -118,29 +118,72 @@ public class GameEngine {
 
     public void handleKey(KEY key) {
         MapTile[] mts = map.getNeighbors(this.playerPacman.getMapX(), this.playerPacman.getMapY());
-
+        boolean collisionDetect = false;
+        
+               /* for (Sprite s : this.arrMapTiles) {
+                    if (this.isCollapse(s.getX(), s.getY(), s.getW(), s.getH(), this.playerPacman.getX(), this.playerPacman.getY(), this.playerPacman.getW(), this.playerPacman.getH())) {
+                        
+                        if (mts[0].s instanceof Wall) {
+                            if (p1.bounced == false) {
+                                p1.sx = 0;
+                                p1.sy = 0;
+                                p1.y = p1.y + 2;
+                                p1.bounced = true;
+                            }
+                        }
+                        if (mts[1].s instanceof Wall) {
+                            if (p1.bounced == false) {
+                                p1.sx = 0;
+                                p1.sy = 0;
+                                p1.x = p1.x - 2;
+                                p1.bounced = true;
+                            }
+                        }
+                        if (mts[2].s instanceof Wall) {
+                            if (p1.bounced == false) {
+                                p1.sx = 0;
+                                p1.sy = 0;
+                                p1.y = p1.y - 2;
+                                p1.bounced = true;
+                            }
+                        }
+                        if (mts[3].s instanceof Wall) {
+                            if (p1.bounced == false) {
+                                p1.sx = 0;
+                                p1.sy = 0;
+                                p1.x = p1.x + 2;
+                                p1.bounced = true;
+                            }
+                        }
+                    }
+                }
+            */
         switch (key) {
             case UP:
                 if (!(mts[0].s instanceof Wall)) {
                     this.playerPacman.setDirection(0, -1);
+                    this.playerPacman.bounced = false;
                 }
                 break;
 
             case DOWN:
                 if (!(mts[2].s instanceof Wall)) {
                     this.playerPacman.setDirection(0, 1);
+                    this.playerPacman.bounced = false;
                 }
                 break;
 
             case LEFT:
                 if (!(mts[3].s instanceof Wall)) {
                     this.playerPacman.setDirection(-1, 0);
+                    this.playerPacman.bounced = false;
                 }
                 break;
 
             case RIGHT:
                 if (!(mts[1].s instanceof Wall)) {
                     this.playerPacman.setDirection(1, 0);
+                    this.playerPacman.bounced = false;
                 }
                 break;
         }
@@ -177,36 +220,76 @@ public class GameEngine {
                         Pacman p1 = (Pacman) s1;
                         MapTile[] mts = map.getNeighbors(p1.getMapX(), p1.getMapY());
                         if (mts[0].s instanceof Wall) {
-                            p1.y = p1.y + 1;
+                            if (p1.bounced == false) {
+                                p1.sx = 0;
+                                p1.sy = 0;
+                                p1.y = p1.y + 2;
+                                p1.bounced = true;
+                            }
                         }
                         if (mts[1].s instanceof Wall) {
-                            p1.x = p1.x - 1;
+                            if (p1.bounced == false) {
+                                p1.sx = 0;
+                                p1.sy = 0;
+                                p1.x = p1.x - 2;
+                                p1.bounced = true;
+                            }
                         }
                         if (mts[2].s instanceof Wall) {
-                            p1.y = p1.y - 1;
+                            if (p1.bounced == false) {
+                                p1.sx = 0;
+                                p1.sy = 0;
+                                p1.y = p1.y - 2;
+                                p1.bounced = true;
+                            }
                         }
                         if (mts[3].s instanceof Wall) {
-                            p1.x = p1.x + 1;
+                            if (p1.bounced == false) {
+                                p1.sx = 0;
+                                p1.sy = 0;
+                                p1.x = p1.x + 2;
+                                p1.bounced = true;
+                            }
                         }
                     }
                 }
             }
-             if (s1 instanceof Pinky) {
+            if (s1 instanceof Pinky) {
                 for (Sprite s : this.arrMapTiles) {
                     if (isCollapse(s.getX(), s.getY(), s.getW(), s.getH(), s1.getX(), s1.getY(), s1.getW(), s1.getH())) {
                         Pinky p1 = (Pinky) s1;
                         MapTile[] mts = map.getNeighbors(p1.getMapX(), p1.getMapY());
-                        if (mts[0].s instanceof Wall) {
-                            p1.y = p1.y + 1;
+                      if (mts[0].s instanceof Wall) {
+                            if (p1.bounced == false) {
+                                p1.sx = 0;
+                                p1.sy = 0;
+                                p1.y = p1.y + 2;
+                                p1.bounced = true;
+                            }
                         }
                         if (mts[1].s instanceof Wall) {
-                            p1.x = p1.x - 1;
+                            if (p1.bounced == false) {
+                                p1.sx = 0;
+                                p1.sy = 0;
+                                p1.x = p1.x - 2;
+                                p1.bounced = true;
+                            }
                         }
                         if (mts[2].s instanceof Wall) {
-                            p1.y = p1.y - 1;
+                            if (p1.bounced == false) {
+                                p1.sx = 0;
+                                p1.sy = 0;
+                                p1.y = p1.y - 2;
+                                p1.bounced = true;
+                            }
                         }
                         if (mts[3].s instanceof Wall) {
-                            p1.x = p1.x + 1;
+                            if (p1.bounced == false) {
+                                p1.sx = 0;
+                                p1.sy = 0;
+                                p1.x = p1.x + 2;
+                                p1.bounced = true;
+                            }
                         }
                     }
                 }
